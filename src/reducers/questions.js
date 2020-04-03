@@ -10,7 +10,7 @@ export default function questions (state = {}, action) {
         case ADD_QUESTION:
             return {
                 ...state,
-                ...action
+                ...state.questions.concat(action.question)
             };
         /*case REMOVE_QUESTION:
             return;*/

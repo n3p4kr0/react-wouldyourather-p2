@@ -18,3 +18,9 @@ import {
   export function saveQuestionAnswer (info) {
     return _saveQuestionAnswer(info)
   }
+
+
+  export function saveQuestion(question) {
+    console.log(question);
+    return _saveQuestion(question)
+  }
