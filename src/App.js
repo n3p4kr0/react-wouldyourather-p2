@@ -17,9 +17,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
-    authedUser: authedUser
+    authedUser: authedUser,
+    users: users
   };
 }
 

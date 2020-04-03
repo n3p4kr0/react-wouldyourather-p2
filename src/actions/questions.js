@@ -7,28 +7,28 @@ export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER'
 
 export function receiveQuestions(questions) {
     return {
-        action: RECEIVE_QUESTIONS,
+        type: RECEIVE_QUESTIONS,
         questions
     }
 } 
 
 export function addQuestion(question) {
     return {
-        action: ADD_QUESTION,
+        type: ADD_QUESTION,
         question
     }
 }
 
-export function removeQuestion(id) {
+/*export function removeQuestion(id) {
     return {
-        action: REMOVE_QUESTION,
+        type: REMOVE_QUESTION,
         id
     }
 }
 
 function saveQuestionAnswer(id) {
     return {
-        action: SAVE_QUESTION_ANSWER,
+        type: SAVE_QUESTION_ANSWER,
         id
     }
-}
+}*/
