@@ -14,7 +14,7 @@ export function receiveQuestions(questions) {
 
 export function addQuestion(question) {
     return {
-        type: REMOVE_QUESTION,
+        type: ADD_QUESTION,
         question,
     }
 }
@@ -22,15 +22,12 @@ export function addQuestion(question) {
 export function handleAddQuestion({ optionOneText, optionTwoText }) {
     return (dispatch, getState) => {
         const { authedUser } = getState();
-        console.log(getState());
-
-        const test = {
+        
+        return saveQuestion({
             optionOneText,
             optionTwoText,
             author: authedUser
-        }
-        
-        return saveQuestion(test)
+        })
           .then((question) => dispatch(addQuestion(question)));
     }
 }

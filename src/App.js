@@ -5,12 +5,12 @@ import { handleAddQuestion } from './actions/questions'
 import { connect } from 'react-redux'
 
 class App extends Component {
-  componentDidMount() {
+ componentDidMount() {
     this.props.dispatch(handleInitialData())
-    this.props.dispatch(handleAddQuestion( {
+    /*this.props.dispatch(handleAddQuestion( {
       optionOneText: 'number 1',
       optionTwoText: 'number 2'
-    }))
+    }))*/
   }
 
   render() {
