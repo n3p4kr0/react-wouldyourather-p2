@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import { handleInitialData } from './actions/shared'
-import { handleAddQuestion } from './actions/questions'
+import '../App.css';
+import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
+import Question from './Question'
 
 class App extends Component {
  componentDidMount() {
@@ -16,7 +16,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.props.authedUser }
+        { Object.keys(this.props.questions).map( (id) => (
+          <Question key={id} id={id} />
+         ) ) }
       </div>
     )
   }
