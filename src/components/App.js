@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import '../App.css';
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
+import 'semantic-ui-css/semantic.min.css'
 import Question from './Question'
+import Dashboard from './Dashboard'
 
 class App extends Component {
  componentDidMount() {
@@ -15,22 +18,28 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        { Object.keys(this.props.questions).map( (id) => (
-          <Question key={id} id={id} />
-         ) ) }
-      </div>
+        <div>
+          <LoadingBar />
+          { !this.props.loading
+            ? (<Dashboard />)
+            : (<p>Loading...</p>)
+          }
+        </div>
     )
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }) {
-  console.log(authedUser);
+function mapStateToProps({ authedUser }) {
   return {
-    authedUser,
-    users: users,
-    questions: questions
+    loading: authedUser === null
   };
 }
 
 export default connect(mapStateToProps)(App);
+
+
+      /*<div className="App">
+        { Object.keys(this.props.questions).map( (id) => (
+          <Question key={id} id={id} />
+         ) ) }
+        </div>*/

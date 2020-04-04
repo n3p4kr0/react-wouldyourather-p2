@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
-import { handleInitialData } from '../actions/shared'
-import { handleAddQuestion } from '../actions/questions'
 import { connect } from 'react-redux'
 import './css/Question.css'
+import { Card, Grid, Button } from 'semantic-ui-react'
 
 class Question extends Component {
   render() {
       const { question } = this.props
         return (
-        <div className="question-item">
-            <div className="question-item-title">
-                { question.author.name } asks...
-            </div>
+        <Card fluid className="question-item" header={question.author.name + " asks..."}>
             <div className="question-item-content">
                 <div className="question-author-picture">
-
+                    <img src={question.author.avatarURL} />
                 </div>
                 <div className="question-options">
                     Would you rather...<br /><br />
                     { question.optionOne.text } <b>or</b>... 
                 </div>
             </div>
-        </div>
+            <Button primary>View Poll</Button>
+        </Card>
         )
     }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
     const question = questions[id]
-    console.log(question);
+    console.log(users[question.author])
 
     return {
         authedUser,

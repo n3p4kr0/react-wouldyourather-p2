@@ -1,12 +1,20 @@
 .question-item {
-    height: 100px;
+    height: 160px;
     border: solid 1px gray;
     border-radius: 5px;  
     width: 600px;
     margin: 20px 0;
 }
 
+.question-item-content {
+    display: flex;
+}
+
 .question-item-title {
     height: 30px;
-    background-color: lightgray
+    background-color: lightgray;
+}
+
+.question-author-picture {
+    min-width: 30%;
 }
