@@ -43,21 +43,10 @@ export function vote({ qid, authedUser, answer}) {
     }
 }
 
-export function handleVote(info) {
+export function updateQuestionVote(info) {
     return (dispatch) => {
         return saveQuestionAnswer(info).then((data) => dispatch(vote(info)))
     }
-
-
-    /*return (dispatch, getState) => {
-        const { authedUser } = getState();
-
-        return saveQuestionAnswer({
-            qid: qid,
-            authedUser: authedUser,
-            answer: answer
-        }).then((data) => dispatch(vote(data)));
-    }*/
 }
 
 /*export function removeQuestion(id) {

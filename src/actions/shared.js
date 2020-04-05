@@ -1,6 +1,6 @@
 import { getInitialData } from '../utils/api'
-import { receiveUsers } from '../actions/users'
-import { receiveQuestions } from '../actions/questions'
+import { receiveUsers, updateUserVote } from '../actions/users'
+import { receiveQuestions, updateQuestionVote } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
@@ -18,3 +18,12 @@ export function handleInitialData () {
       })
   }
 }
+
+/*export function handleVote(info) {
+  return (dispatch) => {
+    return saveQuestionAnswer(info)
+      .then(({ users, questions }) => {
+        dispatch(updateQuestionVote(info))
+      })
+  }
+}*/

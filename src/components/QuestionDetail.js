@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './css/QuestionDetail.css'
-import { handleVote } from '../actions/questions'
+import { updateQuestionVote } from '../actions/questions'
 import { Card, Grid, Button, Divider, Header, Segment } from 'semantic-ui-react'
 
 class QuestionDetail extends Component {
@@ -15,7 +15,7 @@ class QuestionDetail extends Component {
 
     const selectedAnswer = "optionOne"
 
-    dispatch(handleVote({
+    dispatch(updateQuestionVote({
         qid: question.id,
         answer: selectedAnswer,
         authedUser: authedUser
@@ -27,7 +27,7 @@ class QuestionDetail extends Component {
 
     const selectedAnswer = "optionTwo"
 
-    dispatch(handleVote({
+    dispatch(updateQuestionVote({
         qid: question.id,
         answer: selectedAnswer,
         authedUser: authedUser

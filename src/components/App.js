@@ -6,6 +6,7 @@ import LoadingBar from 'react-redux-loading'
 import 'semantic-ui-css/semantic.min.css'
 import Question from './Question'
 import Dashboard from './Dashboard'
+import Header from './Header'
 
 class App extends Component {
  componentDidMount() {
@@ -21,7 +22,8 @@ class App extends Component {
         <div>
           <LoadingBar />
           { !this.props.loading
-            ? (<Dashboard />)
+            ? (<div><Header />
+            <Dashboard /></div>)
             : (<p>Loading...</p>)
           }
         </div>
