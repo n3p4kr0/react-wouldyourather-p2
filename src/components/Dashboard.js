@@ -4,6 +4,7 @@ import { handleAddQuestion } from '../actions/questions'
 import { connect } from 'react-redux'
 import './css/Dashboard.css'
 import Question from './Question'
+import QuestionDetail from './QuestionDetail'
 import { Menu, Segment, Card } from 'semantic-ui-react'
 
 class Dashboard extends Component {
@@ -39,8 +40,8 @@ class Dashboard extends Component {
             <Segment attached="bottom">
                 <Card.Group>
                     { activeItem === 'answered-questions'
-                    ? Object.keys(questions).map( (key) => users[authedUser].answers.hasOwnProperty(key) && <Question id={key} key={key} />)
-                    : Object.keys(questions).map( (key) => !users[authedUser].answers.hasOwnProperty(key) && <Question id={key} key={key} />)
+                    ? Object.keys(questions).map( (key) => users[authedUser].answers.hasOwnProperty(key) && <QuestionDetail id={key} key={key} />)
+                    : Object.keys(questions).map( (key) => !users[authedUser].answers.hasOwnProperty(key) && <QuestionDetail id={key} key={key} />)
                     }
                 </Card.Group>
             </Segment>

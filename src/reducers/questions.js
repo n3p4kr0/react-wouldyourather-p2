@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ADD_QUESTION, REMOVE_QUESTION, SAVE_QUESTION_ANSWER } from '../actions/questions';
+import { RECEIVE_QUESTIONS, ADD_QUESTION, VOTE_QUESTION, REMOVE_QUESTION, SAVE_QUESTION_ANSWER } from '../actions/questions';
 
 export default function questions (state = {}, action) {
     switch(action.type) {
@@ -12,10 +12,15 @@ export default function questions (state = {}, action) {
                 ...state,
                 [action.question.id]: action.question
             };
-        /*case REMOVE_QUESTION:
-            return;*/
-        /*case SAVE_QUESTION_ANSWER:
-            return;*/
+        case VOTE_QUESTION:          
+            //console.log(state)
+            const question = state[action.qid]
+            question[action.answer].votes.push(action.authedUser);
+
+            return {
+                ...state,
+                [action.qid]: question
+            }
         default:
             return state
     }
