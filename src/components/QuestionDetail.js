@@ -12,7 +12,6 @@ class QuestionDetail extends Component {
 
   voteOptionOne = () => {
     const { dispatch, question, authedUser } = this.props
-
     const selectedAnswer = "optionOne"
 
     dispatch(updateQuestionVote({
@@ -22,8 +21,10 @@ class QuestionDetail extends Component {
     }))
   }
 
-  voteOptionTwo = () => {
+  voteOptionTwo = (event) => {
     const { dispatch, question, authedUser } = this.props
+
+    console.log(event.target);
 
     const selectedAnswer = "optionTwo"
 
@@ -40,9 +41,9 @@ class QuestionDetail extends Component {
         return (
         <Card fluid className="question-item">
             {/*<img src={question.author.avatarURL} />*/}
-            <Header>{question.author.name + " asks..."}</Header><br /><br />
+            <Header className="user-asks">{question.author.name + " asks..."}</Header><br /><br />
             
-            Would you rather...<br /><br />
+            <div className="would-you-rather-desc">Would you rather...</div>
             <Segment>
                 <Grid columns={2} stackable textAlign='center' className="question-grid">
                     <Divider vertical>Or</Divider>

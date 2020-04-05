@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { handleInitialData } from '../actions/shared'
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import 'semantic-ui-css/semantic.min.css'
@@ -22,8 +23,27 @@ class App extends Component {
         <div>
           <LoadingBar />
           { !this.props.loading
-            ? (<div><Header />
-            <Dashboard /></div>)
+            ? (<div>
+            <BrowserRouter>
+              <Header />
+              <Switch>
+              <Route exact path="/">
+                <Dashboard />
+              </Route>
+              <Route exact path="/add-question">
+                <Dashboard />
+              </Route>
+              <Route exact path="/leaderboard">
+                <Dashboard />
+              </Route>
+              <Route exact path="/login">
+                <Dashboard />
+              </Route>
+              </Switch>
+            </BrowserRouter></div>)
+
+
+
             : (<p>Loading...</p>)
           }
         </div>
