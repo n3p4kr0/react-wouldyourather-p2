@@ -8,6 +8,7 @@
 
 .question-item-content {
     display: flex;
+    height: 100%;
 }
 
 .question-item-title {
@@ -15,11 +16,15 @@
     background-color: lightgray;
 }
 
-.question-author-picture {
+.question-author-picture img {
     min-width: 30%;
+    width: 250px;
 }
 
 .btn-see-question {
-    width: 80% !important;
+    width: 50% !important;
     margin: auto;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

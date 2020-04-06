@@ -16,11 +16,11 @@ class Question extends Component {
                 <div className="question-options">
                     Would you rather...<br /><br />
                     { question.optionOne.text } <b>or</b>... 
+                    <Link to={"/questions/" + question.id} className="btn-see-question">
+                        <Button primary fluid>View Poll</Button>
+                    </Link>
                 </div>
             </div>
-            <Link to={"/questions/" + question.id} className="btn-see-question">
-                <Button primary fluid>View Poll</Button>
-            </Link>
         </Card>
         )
     }

@@ -6,7 +6,7 @@ import { Menu, Segment, Card } from 'semantic-ui-react'
 
 class Dashboard extends Component {
     state = { 
-        activeItem: 'unanswered-items'
+        activeItem: 'unanswered-questions'
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })

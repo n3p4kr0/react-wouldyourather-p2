@@ -19,8 +19,8 @@ class App extends Component {
     return (
         <div>
           <LoadingBar />
-          { !this.props.loading
-            ? (<div>
+          { !this.props.loading &&
+             (<div>
             <BrowserRouter>
               <AppHeader />
               <Switch>
@@ -41,10 +41,6 @@ class App extends Component {
                 </Route>
               </Switch>
             </BrowserRouter></div>)
-
-
-
-            : (<p>Loading...</p>)
           }
         </div>
     )
@@ -53,7 +49,8 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser
   };
 }
 
