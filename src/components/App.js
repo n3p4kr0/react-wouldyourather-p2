@@ -5,7 +5,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import 'semantic-ui-css/semantic.min.css'
-import Question from './Question'
+import QuestionDetail from './QuestionDetail'
 import Dashboard from './Dashboard'
 import Header from './Header'
 
@@ -27,18 +27,21 @@ class App extends Component {
             <BrowserRouter>
               <Header />
               <Switch>
-              <Route exact path="/">
-                <Dashboard />
-              </Route>
-              <Route exact path="/add-question">
-                <Dashboard />
-              </Route>
-              <Route exact path="/leaderboard">
-                <Dashboard />
-              </Route>
-              <Route exact path="/login">
-                <Dashboard />
-              </Route>
+                <Route exact path="/">
+                  <Dashboard />
+                </Route>
+                <Route exact path="/add-question">
+                  <Dashboard />
+                </Route>
+                <Route exact path="/leaderboard">
+                  <Dashboard />
+                </Route>
+                <Route exact path="/login">
+                  <Dashboard />
+                </Route>
+                <Route exact path="/question/:id">
+                  <QuestionDetail />
+                </Route>
               </Switch>
             </BrowserRouter></div>)
 

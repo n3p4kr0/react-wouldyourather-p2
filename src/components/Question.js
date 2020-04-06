@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './css/Question.css'
+import { Link } from 'react-router-dom'
 import { Card, Grid, Button } from 'semantic-ui-react'
 
 class Question extends Component {
@@ -17,7 +18,9 @@ class Question extends Component {
                     { question.optionOne.text } <b>or</b>... 
                 </div>
             </div>
-            <Button primary>View Poll</Button>
+            <Link to={"/question/" + question.id} className="btn-see-question">
+                <Button primary fluid>View Poll</Button>
+            </Link>
         </Card>
         )
     }

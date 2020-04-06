@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './css/QuestionDetail.css'
 import { updateQuestionVote } from '../actions/questions'
@@ -68,8 +69,10 @@ class QuestionDetail extends Component {
     }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
-    const question = questions[id]
+//function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, params) {
+    const question = questions[params.match.params.id]
+
     return {
         authedUser,
         question: {
@@ -79,4 +82,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
     };
 }
 
-export default connect(mapStateToProps)(QuestionDetail);
+export default withRouter(connect(mapStateToProps)(QuestionDetail));

@@ -18,3 +18,8 @@
 .question-author-picture {
     min-width: 30%;
 }
+
+.btn-see-question {
+    width: 80% !important;
+    margin: auto;
+}
