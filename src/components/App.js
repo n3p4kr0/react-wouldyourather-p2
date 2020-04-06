@@ -5,7 +5,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import 'semantic-ui-css/semantic.min.css'
-import Header from './Header'
+import AppHeader from './AppHeader'
 import QuestionDetail from './QuestionDetail'
 import Dashboard from './Dashboard'
 import AddQuestion from './AddQuestion'
@@ -22,7 +22,7 @@ class App extends Component {
           { !this.props.loading
             ? (<div>
             <BrowserRouter>
-              <Header />
+              <AppHeader />
               <Switch>
                 <Route exact path="/">
                   <Dashboard />
@@ -58,10 +58,3 @@ function mapStateToProps({ authedUser }) {
 }
 
 export default connect(mapStateToProps)(App);
-
-
-      /*<div className="App">
-        { Object.keys(this.props.questions).map( (id) => (
-          <Question key={id} id={id} />
-         ) ) }
-        </div>*/

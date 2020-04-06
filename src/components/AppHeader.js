@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-class Header extends Component {
+class AppHeader extends Component {
     render() {
         return (
             <Menu fluid className="header-menu">
@@ -13,7 +13,7 @@ class Header extends Component {
                 </Menu.Item>
                 <Menu.Item
                 name='new-question'>
-                    <Link to="/add-question">Add Question</Link>
+                    <Link to="/add">Add Question</Link>
                 </Menu.Item>
                 <Menu.Item
                 name='leaderboard'>
@@ -40,4 +40,4 @@ function mapStateToProps({ authedUser, users }) {
     };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(AppHeader);

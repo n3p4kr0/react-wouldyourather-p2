@@ -32,7 +32,6 @@ class QuestionDetail extends Component {
             <Segment>
                 <Grid columns={2} stackable textAlign='center' className="question-grid">
                     <Divider vertical>Or</Divider>
-
                     <Grid.Row verticalAlign='middle' className="options">
                         <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
                             {question.optionOne.text}<br />{question.optionOne.votes.length}
