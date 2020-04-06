@@ -12,8 +12,7 @@ export default function questions (state = {}, action) {
                 ...state,
                 [action.question.id]: action.question
             };
-        case VOTE_QUESTION:          
-            //console.log(state)
+        case VOTE_QUESTION:
             const question = state[action.qid]
             question[action.answer].votes.push(action.authedUser);
 

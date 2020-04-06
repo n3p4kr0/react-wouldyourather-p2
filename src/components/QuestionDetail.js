@@ -6,11 +6,6 @@ import { updateQuestionVote } from '../actions/questions'
 import { Card, Grid, Button, Divider, Header, Segment } from 'semantic-ui-react'
 
 class QuestionDetail extends Component {
-  state = {
-      clicksOptionOne: 0,
-      clicksOptionTwo: 0
-  }
-
   voteOptionOne = () => {
     const { dispatch, question, authedUser } = this.props
     const selectedAnswer = "optionOne"
@@ -24,7 +19,6 @@ class QuestionDetail extends Component {
 
   voteOptionTwo = (event) => {
     const { dispatch, question, authedUser } = this.props
-
     console.log(event.target);
 
     const selectedAnswer = "optionTwo"
@@ -69,7 +63,6 @@ class QuestionDetail extends Component {
     }
 }
 
-//function mapStateToProps({ authedUser, users, questions }, { id }) {
 function mapStateToProps({ authedUser, users, questions }, params) {
     const question = questions[params.match.params.id]
 

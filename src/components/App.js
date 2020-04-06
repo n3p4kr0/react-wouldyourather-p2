@@ -5,9 +5,10 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import 'semantic-ui-css/semantic.min.css'
+import Header from './Header'
 import QuestionDetail from './QuestionDetail'
 import Dashboard from './Dashboard'
-import Header from './Header'
+import AddQuestion from './AddQuestion'
 
 class App extends Component {
  componentDidMount() {
@@ -31,7 +32,7 @@ class App extends Component {
                   <Dashboard />
                 </Route>
                 <Route exact path="/add-question">
-                  <Dashboard />
+                  <AddQuestion />
                 </Route>
                 <Route exact path="/leaderboard">
                   <Dashboard />
