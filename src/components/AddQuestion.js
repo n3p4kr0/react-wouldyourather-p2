@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import './css/AddQuestion.css'
 import { handleAddQuestion } from '../actions/questions'
 import { Card, Input, Button } from 'semantic-ui-react'
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class AddQuestion extends Component {
     state = {
@@ -43,10 +43,8 @@ class AddQuestion extends Component {
         }))
           .then((action) => { 
               console.log(action.question.id)
-              return this.props.history.push('/question/' + action.question.id) 
+              return this.props.history.push('/questions/' + action.question.id) 
         })
-            
-        //
     }
 
     render() {

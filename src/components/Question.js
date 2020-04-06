@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './css/Question.css'
 import { Link } from 'react-router-dom'
-import { Card, Grid, Button } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 
 class Question extends Component {
   render() {
@@ -11,14 +11,14 @@ class Question extends Component {
         <Card fluid className="question-item" header={question.author.name + " asks..."}>
             <div className="question-item-content">
                 <div className="question-author-picture">
-                    <img src={question.author.avatarURL} />
+                    <img src={question.author.avatarURL} alt={"Avatar of " + question.author.name} />
                 </div>
                 <div className="question-options">
                     Would you rather...<br /><br />
                     { question.optionOne.text } <b>or</b>... 
                 </div>
             </div>
-            <Link to={"/question/" + question.id} className="btn-see-question">
+            <Link to={"/questions/" + question.id} className="btn-see-question">
                 <Button primary fluid>View Poll</Button>
             </Link>
         </Card>

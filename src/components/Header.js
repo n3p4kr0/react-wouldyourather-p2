@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Menu } from 'semantic-ui-react'
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 class Header extends Component {

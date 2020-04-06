@@ -1,4 +1,4 @@
-import { getInitialData } from '../utils/api'
+import { getInitialData, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers, updateUserVote } from '../actions/users'
 import { receiveQuestions, updateQuestionVote } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
@@ -19,11 +19,12 @@ export function handleInitialData () {
   }
 }
 
-/*export function handleVote(info) {
+export function handleVote (info) {
   return (dispatch) => {
     return saveQuestionAnswer(info)
-      .then(({ users, questions }) => {
+      .then((data) => {
         dispatch(updateQuestionVote(info))
-      })
+        dispatch(updateUserVote(info))
+    })
   }
-}*/
+}

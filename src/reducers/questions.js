@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ADD_QUESTION, VOTE_QUESTION, REMOVE_QUESTION, SAVE_QUESTION_ANSWER } from '../actions/questions';
+import { RECEIVE_QUESTIONS, ADD_QUESTION, UPDATE_QUESTION_VOTE } from '../actions/questions';
 
 export default function questions (state = {}, action) {
     switch(action.type) {
@@ -12,7 +12,7 @@ export default function questions (state = {}, action) {
                 ...state,
                 [action.question.id]: action.question
             };
-        case VOTE_QUESTION:
+        case UPDATE_QUESTION_VOTE:
             const question = state[action.qid]
             question[action.answer].votes.push(action.authedUser);
 

@@ -1,10 +1,10 @@
-import { saveQuestion, saveQuestionAnswer } from '../utils/api'
+import { saveQuestion } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const REMOVE_QUESTION = 'REMOVE_QUESTION'
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER'
-export const VOTE_QUESTION = 'VOTE_QUESTION'
+export const UPDATE_QUESTION_VOTE = 'UPDATE_QUESTION_VOTE'
 
 export function receiveQuestions(questions) {
     return {
@@ -16,7 +16,7 @@ export function receiveQuestions(questions) {
 export function addQuestion(question) {
     return {
         type: ADD_QUESTION,
-        question,
+        question
     }
 }
 
@@ -34,20 +34,21 @@ export function handleAddQuestion({ optionOneText, optionTwoText }) {
 }
 
 
-export function vote({ qid, authedUser, answer}) {
+export function updateQuestionVote({ qid, authedUser, answer}) {
     return {
-        type: VOTE_QUESTION,
+        type: UPDATE_QUESTION_VOTE,
         qid,
         authedUser,
         answer
     }
 }
 
-export function updateQuestionVote(info) {
+/*export function handleQuestionVote(info) {
     return (dispatch) => {
-        return saveQuestionAnswer(info).then((data) => dispatch(vote(info)))
+        // TODO : add an updateUserVote(info)
+        return saveQuestionAnswer(info).then((data) => dispatch(updateQuestionVote(info)))
     }
-}
+}*/
 
 /*export function removeQuestion(id) {
     return {

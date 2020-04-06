@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { handleInitialData } from '../actions/shared'
-import { handleAddQuestion } from '../actions/questions'
 import { connect } from 'react-redux'
 import './css/Dashboard.css'
 import Question from './Question'

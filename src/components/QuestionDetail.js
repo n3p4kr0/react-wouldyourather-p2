@@ -2,36 +2,26 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './css/QuestionDetail.css'
-import { updateQuestionVote } from '../actions/questions'
-import { Card, Grid, Button, Divider, Header, Segment } from 'semantic-ui-react'
+import { handleVote } from '../actions/shared'
+import { Card, Grid, Divider, Header, Segment } from 'semantic-ui-react'
 
 class QuestionDetail extends Component {
-  voteOptionOne = () => {
+  vote = (event) => {
     const { dispatch, question, authedUser } = this.props
-    const selectedAnswer = "optionOne"
 
-    dispatch(updateQuestionVote({
-        qid: question.id,
-        answer: selectedAnswer,
-        authedUser: authedUser
-    }))
-  }
-
-  voteOptionTwo = (event) => {
-    const { dispatch, question, authedUser } = this.props
-    console.log(event.target);
-
-    const selectedAnswer = "optionTwo"
-
-    dispatch(updateQuestionVote({
-        qid: question.id,
-        answer: selectedAnswer,
-        authedUser: authedUser
-    }))
+    console.log(Object.keys(authedUser.answers))
+    if(!Object.keys(authedUser.answers).includes(question.id)) {
+        
+        dispatch(handleVote({
+            qid: question.id,
+            answer: event.target.id,
+            authedUser: authedUser.id
+        }))
+    }
   }
 
   render() {
-      const { question } = this.props
+      const { authedUser, question } = this.props
 
         return (
         <Card fluid className="question-item">
@@ -44,16 +34,12 @@ class QuestionDetail extends Component {
                     <Divider vertical>Or</Divider>
 
                     <Grid.Row verticalAlign='middle' className="options">
-                        <Grid.Column className="option optionOne" onClick={this.voteOptionOne}>
-                        <Header>
+                        <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
                             {question.optionOne.text}<br />{question.optionOne.votes.length}
-                        </Header>
                         </Grid.Column>
 
-                        <Grid.Column className="option optionTwo" onClick={this.voteOptionTwo}>
-                        <Header>
+                        <Grid.Column id="optionTwo" className={ "option" + (question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote}>
                             {question.optionTwo.text}<br />{question.optionTwo.votes.length}
-                        </Header>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid> 
@@ -67,7 +53,7 @@ function mapStateToProps({ authedUser, users, questions }, params) {
     const question = questions[params.match.params.id]
 
     return {
-        authedUser,
+        authedUser: users[authedUser],
         question: {
             ...question,
             author: users[question.author]

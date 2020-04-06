@@ -13,10 +13,6 @@ import AddQuestion from './AddQuestion'
 class App extends Component {
  componentDidMount() {
     this.props.dispatch(handleInitialData())
-    /*this.props.dispatch(handleAddQuestion( {
-      optionOneText: 'number 1',
-      optionTwoText: 'number 2'
-    }))*/
   }
 
   render() {
@@ -31,7 +27,7 @@ class App extends Component {
                 <Route exact path="/">
                   <Dashboard />
                 </Route>
-                <Route exact path="/add-question">
+                <Route exact path="/add">
                   <AddQuestion />
                 </Route>
                 <Route exact path="/leaderboard">
@@ -40,7 +36,7 @@ class App extends Component {
                 <Route exact path="/login">
                   <Dashboard />
                 </Route>
-                <Route exact path="/question/:id">
+                <Route exact path="/questions/:id">
                   <QuestionDetail />
                 </Route>
               </Switch>
