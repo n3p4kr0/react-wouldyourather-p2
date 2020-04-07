@@ -8,6 +8,7 @@ import 'semantic-ui-css/semantic.min.css'
 import AppHeader from './AppHeader'
 import QuestionDetail from './QuestionDetail'
 import Dashboard from './Dashboard'
+import Leaderboard from './Leaderboard'
 import AddQuestion from './AddQuestion'
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
                   <AddQuestion />
                 </Route>
                 <Route exact path="/leaderboard">
-                  <Dashboard />
+                  <Leaderboard />
                 </Route>
                 <Route exact path="/login">
                   <Dashboard />

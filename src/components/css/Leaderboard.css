@@ -1,0 +1,32 @@
+.leaderboard {
+    width: 60%;
+    margin: auto;
+}
+
+.user-leaderboard {
+    width: 60%;
+}
+
+.column-avatar, .column-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.column-score {
+    padding-left: 0 !important;
+}
+
+
+.column-avatar {
+    padding-right: 0 !important;
+}
+
+.leaderboard-user-avatar {
+    width: 150px;
+    vertical-align: middle;
+    margin: auto;
+    text-align: center;
+}
