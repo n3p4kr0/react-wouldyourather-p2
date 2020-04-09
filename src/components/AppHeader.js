@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logout } from '../actions/authedUser'
 
@@ -9,6 +9,8 @@ class AppHeader extends Component {
         const { dispatch } = this.props
 
         dispatch(logout())
+
+        this.props.history.push('/login') 
     }
 
     render() {
@@ -27,10 +29,9 @@ class AppHeader extends Component {
                     <Link to="/leaderboard">Leaderboard</Link>
                 </Menu.Item>
                 {this.props.authedUser !== null 
-                
                 ? 
                 <Menu.Menu position='right'>
-                    <div className="user-name">Hello, { this.props.userName } !</div>
+                    { this.props.userName !== null && <div className="user-name">Hello, { this.props.userName } !</div> }
                     <Menu.Item
                     name='logout'
                     onClick={this.logout}>
@@ -51,11 +52,12 @@ class AppHeader extends Component {
 
 
 function mapStateToProps({ authedUser, users }) {
-    const userName = users[authedUser].name
+    let userName = (authedUser !== null) ? users[authedUser].name : null
+    
     return {
         authedUser,
         userName
     };
 }
 
-export default connect(mapStateToProps)(AppHeader);
+export default withRouter(connect(mapStateToProps)(AppHeader));

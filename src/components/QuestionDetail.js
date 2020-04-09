@@ -9,9 +9,7 @@ class QuestionDetail extends Component {
   vote = (event) => {
     const { dispatch, question, authedUser } = this.props
 
-    console.log(Object.keys(authedUser.answers))
     if(!Object.keys(authedUser.answers).includes(question.id)) {
-        
         dispatch(handleVote({
             qid: question.id,
             answer: event.target.id,

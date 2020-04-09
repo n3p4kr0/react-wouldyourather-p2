@@ -10,6 +10,7 @@ import QuestionDetail from './QuestionDetail'
 import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
 import AddQuestion from './AddQuestion'
+import LoginPage from './LoginPage'
 
 class App extends Component {
  componentDidMount() {
@@ -19,14 +20,16 @@ class App extends Component {
   render() {
     return (
         <div>
-          <LoadingBar />
-          { !this.props.loading &&
-             (<div>
-            <BrowserRouter>
+        <LoadingBar />
+          { !this.props.loading && 
+            (<BrowserRouter>
               <AppHeader />
-              <Switch>
+              <Switch>   
                 <Route exact path="/">
                   <Dashboard />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
                 </Route>
                 <Route exact path="/add">
                   <AddQuestion />
@@ -41,16 +44,16 @@ class App extends Component {
                   <QuestionDetail />
                 </Route>
               </Switch>
-            </BrowserRouter></div>)
+            </BrowserRouter>)
           }
         </div>
     )
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users, questions }) {  
   return {
-    loading: authedUser === null,
+    loading: (users === {} || questions === {}),
     authedUser
   };
 }

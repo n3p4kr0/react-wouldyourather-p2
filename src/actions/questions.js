@@ -20,20 +20,6 @@ export function addQuestion(question) {
     }
 }
 
-export function handleAddQuestion({ optionOneText, optionTwoText }) {
-    return (dispatch, getState) => {
-        const { authedUser } = getState();
-        
-        return saveQuestion({
-            optionOneText,
-            optionTwoText,
-            author: authedUser
-        })
-          .then((question) => dispatch(addQuestion(question)));
-    }
-}
-
-
 export function updateQuestionVote({ qid, authedUser, answer}) {
     return {
         type: UPDATE_QUESTION_VOTE,
@@ -42,24 +28,3 @@ export function updateQuestionVote({ qid, authedUser, answer}) {
         answer
     }
 }
-
-/*export function handleQuestionVote(info) {
-    return (dispatch) => {
-        // TODO : add an updateUserVote(info)
-        return saveQuestionAnswer(info).then((data) => dispatch(updateQuestionVote(info)))
-    }
-}*/
-
-/*export function removeQuestion(id) {
-    return {
-        type: REMOVE_QUESTION,
-        id
-    }
-}
-
-function saveQuestionAnswer(id) {
-    return {
-        type: SAVE_QUESTION_ANSWER,
-        id
-    }
-}*/
