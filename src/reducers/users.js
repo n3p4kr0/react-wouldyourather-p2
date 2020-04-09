@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, UPDATE_USER_VOTE, ADD_QUESTION_USER } from '../actions/users';
+import { RECEIVE_USERS, UPDATE_USER_VOTE, ADD_QUESTION_USER, ADD_USER } from '../actions/users';
 
 export default function users (state = {}, action) {
     switch(action.type) {
@@ -27,6 +27,18 @@ export default function users (state = {}, action) {
                         ...state[action.authedUser].questions,
                         action.qid   
                     ]
+                }
+            }
+        case ADD_USER:
+            console.log(action)
+            return {
+                ...state,
+                [action.id]: {
+                    id: [action.id],
+                    name: [action.name],
+                    avatarURL: [action.avatarURL],
+                    answers: {},
+                    questions: []
                 }
             }
         default:

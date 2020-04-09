@@ -54,6 +54,10 @@ class AppHeader extends Component {
                         name='login'>
                             <Link to="/login">Login</Link>
                         </Menu.Item>
+                        <Menu.Item
+                        name='register'>
+                            <Link to="/register">Register</Link>
+                        </Menu.Item>
                     </Menu.Menu> }
                 </Menu>
             </div>

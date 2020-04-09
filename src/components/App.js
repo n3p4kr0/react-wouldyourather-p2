@@ -12,6 +12,7 @@ import Leaderboard from './Leaderboard'
 import AddQuestion from './AddQuestion'
 import LoginPage from './LoginPage'
 import NotFoundPage from './NotFoundPage'
+import AddUser from './AddUser'
 
 class App extends Component {
  componentDidMount() {
@@ -47,6 +48,7 @@ class App extends Component {
                   </Switch>
                 :
                 <Switch>
+                  <Route exact path="/register" component={AddUser} />
                   <Route component={LoginPage} />
                 </Switch>
               }

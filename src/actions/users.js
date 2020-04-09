@@ -1,6 +1,9 @@
+import { saveUser } from '../utils/api'
+
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const UPDATE_USER_VOTE = 'UPDATE_USER_VOTE';
 export const ADD_QUESTION_USER = 'ADD_QUESTION_USER';
+export const ADD_USER = 'ADD_USER';
 
 // Called when the data is fetched from the API, when App is mounted
 export function receiveUsers(users) {
@@ -27,4 +30,22 @@ export function addQuestionUser({ qid, authedUser }) {
         qid,
         authedUser
     }
+}
+
+function addUser ({ id, name, avatarURL }) {
+    return {
+        type: ADD_USER,
+        id,
+        name,
+        avatarURL
+    }
+}
+
+export function handleAddUser( { name, avatarURL }) {
+    return (dispatch) => {
+        return saveUser({ name, avatarURL })
+          .then((data) => {
+            dispatch(addUser(data))
+        })
+      }
 }

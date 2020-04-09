@@ -185,8 +185,6 @@ let users = {
           }
         }
 
-        console.log(qid)
-        console.log(answer)
         questions = {
           ...questions,
           [qid]: {
@@ -203,3 +201,36 @@ let users = {
     })
   }
   
+  // END OF ORIGINAL FILE
+  // THE FOLLOWING IS CUSTOM METHODS
+
+  function generateUserId(name) {
+    return name.toLowerCase().replace(/[^a-z]/g, '')
+  }
+
+  export function _saveUser ({ name, avatarURL }) { 
+    return new Promise((res, rej) => {
+      const user = {
+        id: generateUserId(name),
+        name,
+        avatarURL,
+        answers: {},
+        questions: []
+      }
+
+      setTimeout(() => {
+        users = {
+          ...users,
+          [user.id]: {
+            id: [user.id],
+            name: [user.name],
+            avatarURL: [user.avatarURL],
+            answers: {},
+            questions: []
+          }
+        }
+        console.log(users)
+        res(user)
+      }, 500)
+    })
+  }
