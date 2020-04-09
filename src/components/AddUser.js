@@ -3,28 +3,17 @@ import { connect } from 'react-redux'
 import { handleAddUser } from '../actions/users'
 import { Card, Header, Input, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
+import validUrl from "valid-url"
 import styles from './css/addUser.module.css'
+
 
 class AddUser extends Component {
     state = {
         name: '',
         avatarURL: '',
-        //validURL: false,
+        isValidURL: false,
         loading: false
     }
-
-    /*validateURL = () => {     
-        try {
-            new URL(this.state.avatarURL);
-        } catch (_) {
-            console.log("FAUX")
-            return false;  
-        }
-
-        (this.state.avatarURL.protocol === "http:" || this.state.avatarURL.protocol === "https:") && console.log('TRUE')
-        
-        return this.state.avatarURL.protocol === "http:" || this.state.avatarURL.protocol === "https:";
-    }*/
 
     checkEmpty = (e) => {
         const inputChanged = e.target.id
@@ -35,6 +24,14 @@ class AddUser extends Component {
         }
         else if (e.target.parentNode.classList.contains("error")) {
             e.target.parentNode.classList.toggle("error")
+        }
+
+        if(inputChanged === 'avatarURL') {
+            if(validUrl.isUri(inputValue)) {
+                this.setState((prevState) => ({ ...prevState, isValidURL: true }))
+            } else {
+                this.setState((prevState) => ({ ...prevState, isValidURL: false }))
+            }
         }
 
         this.setState((prevState) => ({
@@ -69,7 +66,7 @@ class AddUser extends Component {
                         (<div className={styles.registrationForm}>
                             <Input fluid placeholder="Name" id="name" className={styles.inputName} onChange={this.checkEmpty} value={this.state.name}/> 
                             <Input fluid placeholder="Avatar URL" id="avatarURL" className={styles.inputAvatarURL} onChange={this.checkEmpty} value={this.state.avatarURL}/>
-                            <Button primary className={styles.btnAddUser} onClick={this.handleAddUser} disabled={this.state.name === '' || this.state.avatarURL === '' } >Register</Button>
+                            <Button primary className={styles.btnAddUser} onClick={this.handleAddUser} disabled={this.state.name === '' || !this.state.isValidURL } >Register</Button>
                         </div>)
                            
                         : <p>You cannot register as you're already <Link to="/logout">logged in</Link>.</p>

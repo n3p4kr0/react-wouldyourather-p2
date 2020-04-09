@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { handleInitialData } from '../actions/shared'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import LoadingBar from 'react-redux-loading'
+import LoadingBar from 'react-redux-loading-bar'
 import 'semantic-ui-css/semantic.min.css'
 import AppHeader from './AppHeader'
 import QuestionDetail from './QuestionDetail'

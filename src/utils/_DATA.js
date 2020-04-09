@@ -229,7 +229,6 @@ let users = {
             questions: []
           }
         }
-        console.log(users)
         res(user)
       }, 500)
     })
