@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WouldYouRather?
 
-## Available Scripts
+This project is my implementation of the second project of Udacity's "React" Nanodegree program.
 
-In the project directory, you can run:
+It is a simple implementation of the "Would you rather" game. There is a list of questions, each of them letting them choose between two options (e.g. "Would you rather this or that?").
 
-### `yarn start`
+The app connects to an offline API (in the form of a file used to read data), but does not persist its state (on refresh, all the added data disappears).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installation
 
-### `yarn test`
+Installation is simple and can be done through npm or Yarn.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`git clone https://github.com/FaremDev/react-wouldyourather-p2.git`
 
-### `yarn build`
+`yarn install OR npm install`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`yarn start OR npm start`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+It will then be accessible through [http://localhost:3000](http://localhost:3000) in the browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `yarn eject`
+Usage is also quite straightforward.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The user cannot use the app without being logged in. To do so, they only have to select their name from a simple select input. Once logged in, they can easily log out.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The homepage shows the User's list of answered and unanswered questions. Clicking on one will allow them to see the two vote possibilities, and the number and percentage of users who chose each one (plus their own choice). The user is not allowed to modify its vote once it has selected one or the other option.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+There is a form that allows the User to add a new question.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+A leaderboard is available, that shows an ordered list of all users number of answered and created questions: for each, they earn one point, and the ranking is based on that total score.
