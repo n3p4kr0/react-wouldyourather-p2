@@ -22,26 +22,27 @@ class QuestionDetail extends Component {
       const { authedUser, question } = this.props
 
         return (
-        <Card fluid className="question-item">
-            {/*<img src={question.author.avatarURL} />*/}
-            <Header className="user-asks">{question.author.name + " asks..."}</Header><br /><br />
-            
-            <div className="would-you-rather-desc">Would you rather...</div>
-            <Segment>
-                <Grid columns={2} stackable textAlign='center' className="question-grid">
-                    <Divider vertical>Or</Divider>
-                    <Grid.Row verticalAlign='middle' className="options">
-                        <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
-                            {question.optionOne.text}<br />{question.optionOne.votes.length}
-                        </Grid.Column>
+         <Segment attached="bottom" className="seg-question-detail">
+            <Card fluid className="question-item">
+                <Header className="user-asks">{question.author.name + " asks..."}</Header><br /><br />
+                
+                <Header className="would-you-rather-desc">Would you rather...</Header>
+                <Segment>
+                    <Grid columns={2} stackable textAlign='center' className="question-grid">
+                        <Divider vertical>Or</Divider>
+                        <Grid.Row verticalAlign='middle' className="options">
+                            <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
+                                {question.optionOne.text}<br />{question.optionOne.votes.length}
+                            </Grid.Column>
 
-                        <Grid.Column id="optionTwo" className={ "option" + (question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote}>
-                            {question.optionTwo.text}<br />{question.optionTwo.votes.length}
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid> 
-            </Segment>                
-        </Card>
+                            <Grid.Column id="optionTwo" className={ "option" + (question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote}>
+                                {question.optionTwo.text}<br />{question.optionTwo.votes.length}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid> 
+                </Segment>                
+            </Card>
+        </Segment>
         )
     }
 }

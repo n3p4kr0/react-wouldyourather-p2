@@ -15,13 +15,15 @@ class Question extends Component {
                     <img src={question.author.avatarURL} alt={"Avatar of " + question.author.name} />
                 </div>
                 <div className="question-options">
-                    Would you rather...<br /><br />
+                    <Header className="would-you-rather-text">Would you rather...</Header>
                     { question.optionOne.text } <b>or</b>... 
-                    { authedUser === null 
-                        ? <Button disabled className="btn-see-question">Please connect to view poll</Button>
-                        : <Link to={"/questions/" + question.id} className="btn-see-question"><Button primary fluid>View Poll</Button></Link>
-                    }
                 </div>
+            </div>
+            <div className="question-item-button">
+                { authedUser === null 
+                    ? <Button disabled className="btn-see-question">Please connect to view poll</Button>
+                    : <Link to={"/questions/" + question.id} className="btn-see-question"><Button primary fluid>View Poll</Button></Link>
+                }
             </div>
         </Card>
         )
