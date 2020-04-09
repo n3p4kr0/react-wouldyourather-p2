@@ -22,17 +22,16 @@ function Leaderboard(props) {
                                     { i+1 === 3 && (<p>Third</p>)}
                                     <Image src={users[qid].avatarURL} alt={"Avatar of " + users[qid].name} className="leaderboard-user-avatar" />
                                 </Grid.Column>
-                                <Grid.Column width={10}>
-                                    <Header>{users[qid].name}</Header>
-                                    <div className="user-results"></div>
+                                <Grid.Column width={10} className="column-details">
+                                    <Header className="leaderboard-user-name">{users[qid].name}</Header>
                                     <div className="user-answered-questions">Answered questions: { Object.keys(users[qid].answers).length }</div>
                                     <div className="user-created-questions">Created questions: { users[qid].questions.length }</div>
                                 </Grid.Column>
                                 <Grid.Column width={3} className="column-score" textAlign='center'>
                                     <div className="user-score">
-                                        <Header>Score</Header>
-                                        {users[qid].score}
-                                        </div>
+                                        <Header className="score-title">Score</Header>
+                                        <div className="current-score">{users[qid].score}</div>
+                                    </div>
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
