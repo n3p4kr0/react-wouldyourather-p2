@@ -11,6 +11,7 @@ import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
 import AddQuestion from './AddQuestion'
 import LoginPage from './LoginPage'
+import NotFoundPage from './NotFoundPage'
 
 class App extends Component {
  componentDidMount() {
@@ -26,29 +27,27 @@ class App extends Component {
               <AppHeader />
               { this.props.authedUser !== null
                 ?
-                <Switch>
-                  <Route exact path="/">
-                    <Dashboard />
-                  </Route>
-                  <Route exact path="/login">
-                    <LoginPage />
-                  </Route>
-                  <Route exact path="/add">
-                    <AddQuestion />
-                  </Route>
-                  <Route exact path="/leaderboard">
-                    <Leaderboard />
-                  </Route>
-                  <Route exact path="/questions/:id">
-                    <QuestionDetail />
-                  </Route>
-                </Switch>
-                
+                  <Switch>
+                    <Route exact path="/">
+                      <Dashboard />
+                    </Route>
+                    <Route exact path="/login">
+                      <LoginPage />
+                    </Route>
+                    <Route exact path="/add">
+                      <AddQuestion />
+                    </Route>
+                    <Route exact path="/leaderboard">
+                      <Leaderboard />
+                    </Route>
+                    <Route exact path="/questions/:id">
+                      <QuestionDetail />
+                    </Route>
+                    <Route exact path="/not-found" component={NotFoundPage} />
+                  </Switch>
                 :
                 <Switch>
-                  <Route path="/">
-                    <LoginPage />
-                  </Route>
+                  <Route component={LoginPage} />
                 </Switch>
               }
             </BrowserRouter>)

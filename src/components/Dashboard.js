@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Question from './Question'
 import { Menu, Segment, Card } from 'semantic-ui-react'
 import styles from './css/dashboard.module.css'
+import { Link } from 'react-router-dom'
 
 class Dashboard extends Component {
     state = { 
@@ -12,7 +13,7 @@ class Dashboard extends Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { questions, authedUser, users } = this.props
+        const { questions, authedUser } = this.props
         const { activeItem } = this.state
         
         return (
@@ -31,12 +32,16 @@ class Dashboard extends Component {
             </Menu>
             <Segment attached="bottom">
                 <Card.Group>
-                    { (authedUser !== null && activeItem === 'answered-questions' ) 
-                        && ( questions.map((question) => users[authedUser].answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
+                    { (activeItem === 'answered-questions' ) 
+                        && ( questions.map((question) => authedUser.answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
                     }
-                    { (authedUser !== null && activeItem === 'unanswered-questions' ) 
-                        && ( questions.map((question) => !users[authedUser].answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
-                    }                
+                    { (activeItem === 'unanswered-questions' ) 
+                        && ( questions.map((question) => !authedUser.answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
+                    }
+                    { (activeItem === 'unanswered-questions' && Object.keys(authedUser.answers).length === Object.keys(questions).length )
+                        && (<p>You've answered all the questions! Why not <Link to="/add">create some more of them</Link>? </p>) }
+                    { (activeItem === 'answered-questions' && Object.keys(authedUser.answers).length === 0 )
+                        && (<p>Come on... You should at least answer a few questions! Keep going like that and you'll be nowhere on the <Link to="/leaderboard">Leaderboard</Link> ! </p>) }
                 </Card.Group>
             </Segment>
         </div>
@@ -50,9 +55,8 @@ function mapStateToProps({ authedUser, users, questions }) {
     const q = Object.values(questions).sort((a, b) => { return b.timestamp - a.timestamp})
 
     return {
-        authedUser,
-        questions: q,
-        users
+        authedUser: users[authedUser],
+        questions: q
     };
 }
 

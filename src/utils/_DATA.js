@@ -184,7 +184,9 @@ let users = {
             }
           }
         }
-  
+
+        console.log(qid)
+        console.log(answer)
         questions = {
           ...questions,
           [qid]: {
