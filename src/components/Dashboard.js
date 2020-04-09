@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import './css/Dashboard.css'
 import Question from './Question'
 import { Menu, Segment, Card } from 'semantic-ui-react'
+import styles from './css/dashboard.module.css'
 
 class Dashboard extends Component {
     state = { 
@@ -16,7 +16,7 @@ class Dashboard extends Component {
         const { activeItem } = this.state
         
         return (
-        <div className="dashboard">
+        <div className={styles.dashboard}>
             <Menu pointing widths={2} attached="top">
                 <Menu.Item
                     name='answered-questions'
@@ -28,19 +28,14 @@ class Dashboard extends Component {
                     active={activeItem === 'unanswered-questions'}
                     onClick={this.handleItemClick}
                 />
-                {/*<Menu.Menu position='center'>
-                    <Menu.Item>
-                    <Input icon='search' placeholder='Search...' />
-                    </Menu.Item>
-                </Menu.Menu>*/}
             </Menu>
             <Segment attached="bottom">
                 <Card.Group>
                     { (authedUser !== null && activeItem === 'answered-questions' ) 
-                        && ( Object.keys(questions).map( (key) => users[authedUser].answers.hasOwnProperty(key) && <Question id={key} key={key} />) )   
+                        && ( questions.map((question) => users[authedUser].answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
                     }
                     { (authedUser !== null && activeItem === 'unanswered-questions' ) 
-                        && ( Object.keys(questions).map( (key) => !users[authedUser].answers.hasOwnProperty(key) && <Question id={key} key={key} />) )  
+                        && ( questions.map((question) => !users[authedUser].answers.hasOwnProperty(question.id) && <Question id={question.id} key={question.id} />))  
                     }                
                 </Card.Group>
             </Segment>
@@ -50,23 +45,11 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-    let answeredQuestions = []
-    let unansweredQuestions = []
+    const q = Object.values(questions).sort((a, b) => { return b.timestamp - a.timestamp})
 
-    for(let question in questions) {
-        if(authedUser !== null && users[authedUser].answers === question.key) {
-            answeredQuestions.push(question)
-        } 
-        else {
-            unansweredQuestions.push(question)
-        }
-    }
-    
     return {
         authedUser,
-        answeredQuestions,
-        unansweredQuestions,
-        questions,
+        questions: q,
         users
     };
 }

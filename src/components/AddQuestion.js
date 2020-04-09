@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './css/AddQuestion.css'
 import { handleAddQuestion } from '../actions/shared'
 import { Card, Header, Input, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
+import styles from './css/addQuestion.module.css'
 
 class AddQuestion extends Component {
     state = {
@@ -48,12 +48,12 @@ class AddQuestion extends Component {
     render() {
         return (
             <div>
-                <Card className="module-add-question">
-                    <Header as="h2" className="add-would-you-rather">Would you rather... ?</Header>
-                    <Input placeholder="Option 1" id="optionOne" className="input-option-one" onChange={this.checkEmpty} />
+                <Card className={styles.moduleAddQuestion}>
+                    <Header as="h2" className={styles.addWouldYouRather}>Would you rather... ?</Header>
+                    <Input placeholder="Option 1" id="optionOne" className={styles.inputOptionOne} onChange={this.checkEmpty} />
                     
-                    <Input placeholder="Option 2" id="optionTwo" className="input-option-two" onChange={this.checkEmpty} />
-                    <Button primary className="btn-add-question" onClick={this.handleAddQuestion} disabled={this.state.optionOne === '' || this.state.optionTwo === ''} >Add question</Button>
+                    <Input placeholder="Option 2" id="optionTwo" className={styles.inputOptionTwo} onChange={this.checkEmpty} />
+                    <Button primary className={styles.btnAddQuestion} onClick={this.handleAddQuestion} disabled={this.state.optionOne === '' || this.state.optionTwo === ''} >Add question</Button>
                 </Card>
                 { this.state.loading &&
                 <Dimmer active>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import './css/QuestionDetail.css'
+import styles from './css/questionDetail.module.css'
 import { handleVote } from '../actions/shared'
 import { Card, Grid, Divider, Header, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
@@ -31,25 +31,27 @@ class QuestionDetail extends Component {
     }
 
     render() {
-        const { authedUser, question } = this.props
+        const { question } = this.props
 
         return (
         <div>
-            <Segment attached="bottom" className="seg-question-detail">
-                <Card fluid className="question-item">
-                    <Header className="user-asks">{question.author.name + " asks..."}</Header><br /><br />
+            <Segment attached="bottom" className={styles.segQuestionDetail}>
+                <Card fluid className={styles.questionItem}>
+                    <Header className={styles.userAsks}>{question.author.name + " asks..."}</Header><br /><br />
                     
-                    <Header className="would-you-rather-desc">Would you rather...</Header>
+                    <Header className={styles.wouldYouRatherDesc}>Would you rather...</Header>
                     <Segment>
-                        <Grid columns={2} stackable textAlign='center' className="question-grid">
+                        <Grid columns={2} stackable textAlign='center' className={styles.questionGrid}>
                             <Divider vertical>Or</Divider>
-                            <Grid.Row verticalAlign='middle' className="options">
-                                <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
-                                    {question.optionOne.text}<br />{question.optionOne.votes.length} ({ question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100}%)
+                            <Grid.Row verticalAlign='middle' className={styles.options}>
+                                <Grid.Column id="optionOne" className={styles.option} onClick={this.vote} >
+                                    <div className={styles.optionContent}>{question.optionOne.text}</div><br />
+                                    {question.optionOne.votes.length} ({ (question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100).toFixed(2)}%)
                                 </Grid.Column>
 
-                                <Grid.Column id="optionTwo" className={ "option" + (question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote}>
-                                    {question.optionTwo.text}<br />{question.optionTwo.votes.length} ({ question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100}%)
+                                <Grid.Column id="optionTwo" className={styles.option} onClick={this.vote}>
+                                    <div className={styles.optionContent}>{question.optionTwo.text}</div><br />
+                                    {question.optionTwo.votes.length} ({ (question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100).toFixed(2)}%)
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid> 

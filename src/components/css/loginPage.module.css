@@ -1,18 +1,18 @@
-.user-login-page {
+.userLoginPage {
     width: 50% !important;
     margin: auto !important;
     padding: 10px !important;
 }
 
-.login-select {
+.loginSelect {
     margin: 10px 0;
 }
 
-.btn-login {
+.btnLogin {
     margin: 10px 0 !important;
 }
 
-.app-header-avatar {
+.appHeaderAvatar {
     width: 25px;
     margin-right: 5px;
 }

@@ -3,7 +3,7 @@ import { Menu, Header } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logout } from '../actions/authedUser'
-import './css/AppHeader.css'
+import styles from './css/appHeader.module.css'
 
 class AppHeader extends Component {
     logout = () => {
@@ -16,9 +16,11 @@ class AppHeader extends Component {
 
     render() {
         return (
-            <div className="app-header">
-                <div className="header-title-bar"><Header as="h1" className="header-title">Would you rather?</Header></div>
-                <Menu fluid className="header-menu">
+            <div className={styles.appHeader}>
+                <div className={styles.headerTitleBar}>
+                    <Header as="h1" className={styles.headerTitle}>Would you rather?</Header>
+                </div>
+                <Menu fluid className={styles.headerMenu}>
                     <Menu.Item
                     name='home'>
                         <Link to="/">Home</Link>
@@ -35,8 +37,8 @@ class AppHeader extends Component {
                     ? 
                     <Menu.Menu position='right'>
                         { this.props.userName !== null && 
-                            <div className="user-name">
-                                <img src={this.props.avatarURL} alt={this.props.userName + "'s avatar miniature"} className="app-header-avatar"/>
+                            <div className={styles.userName}>
+                                <img src={this.props.avatarURL} alt={this.props.userName + "'s avatar miniature"} className={styles.appHeaderAvatar}/>
                                 Hello, { this.props.userName } !
                             </div> 
                         }

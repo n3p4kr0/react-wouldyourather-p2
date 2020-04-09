@@ -1,19 +1,29 @@
-.question-item-content {
+.questionItem {
+    height: 300px !important;
+    border: solid 1px gray;
+    border-radius: 5px;  
+    margin: 20px 0;
+    padding: 10px !important;
+}
+
+.questionItemContent {
     display: flex;
     height: 100%;
 }
 
-.question-item-title {
+.questionItemTitle {
     height: 30px;
     background-color: lightgray;
 }
 
-.question-author-picture {
+.questionAuthorPicture {
     width: 27%;
     border-right: solid 1px lightgray;
+    display: flex;
+    align-items: center;
 }
 
-.question-author-picture img {
+.questionAuthorPicture img {
     min-width: 25%;
     width: 175px;
 }
@@ -30,14 +40,9 @@
     padding: 0 !important;
 }
 
-.user-asks {
-    /*margin-top: 20px !important;
-    margin-left: 20px !important;*/
-}
-
-.would-you-rather-desc {
+.wouldYouRatherDesc {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: calc(2rem - 0.142857em);
 }
 
 .voted {
@@ -48,7 +53,12 @@
      outline: none;
 }
 
-.seg-question-detail {
+.segQuestionDetail {
     width: 50% !important;
     margin: auto !important;
+}
+
+.optionContent {
+    font-weight: bold;
+    font-size: 1.5rem;
 }

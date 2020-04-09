@@ -1,19 +1,19 @@
-.module-add-question {
+.moduleAddQuestion {
     width: 50%;
     min-width: 50%;
     margin: auto !important;
     text-align: center !important;
 }
 
-.add-would-you-rather {
+.addWouldYouRather {
     margin-top: 10px !important;
 }
 
-.input {
+.inputOptionOne, .inputOptionTwo {
     margin: 10px !important;
 }
 
-.btn-add-question {
+.btnAddQuestion {
     margin: 10px auto !important;
     width: 90% !important;
     border-radius: 3px !important;

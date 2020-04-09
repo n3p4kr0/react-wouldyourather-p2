@@ -1,33 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
-import './css/Question.css'
+import styles from './css/question.module.css'
 import { Link } from 'react-router-dom'
 import { Card, Button, Header } from 'semantic-ui-react'
 
-class Question extends Component {
-  render() {
-      const { question, authedUser } = this.props
-        return (
-        <Card fluid className="question-item">
+function Question (props) {
+    const { question, authedUser } = props
+    
+    return (
+        <Card fluid className={styles.questionItem}>
             <Header>{question.author.name + " asks..."}</Header>
-            <div className="question-item-content">
-                <div className="question-author-picture">
+            <div className={styles.questionItemContent}>
+                <div className={styles.questionAuthorPicture}>
                     <img src={question.author.avatarURL} alt={"Avatar of " + question.author.name} />
                 </div>
-                <div className="question-options">
-                    <Header className="would-you-rather-text">Would you rather...</Header>
+                <div className={styles.questionOptions}>
+                    <Header className={styles.wouldYouRatherText}>Would you rather...</Header>
                     { question.optionOne.text } <b>or</b>... 
                 </div>
             </div>
-            <div className="question-item-button">
+            <div className={styles.questionItemButton}>
                 { authedUser === null 
-                    ? <Button disabled className="btn-see-question">Please connect to view poll</Button>
-                    : <Link to={"/questions/" + question.id} className="btn-see-question"><Button primary fluid>View Poll</Button></Link>
+                    ? <Button disabled className={styles.btnSeeQuestion}>Please connect to view poll</Button>
+                    : <Link to={"/questions/" + question.id} className={styles.btnSeeQuestion}><Button primary fluid>View Poll</Button></Link>
                 }
             </div>
         </Card>
-        )
-    }
+    )
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
