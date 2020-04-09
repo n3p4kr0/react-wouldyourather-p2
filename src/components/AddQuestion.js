@@ -39,9 +39,8 @@ class AddQuestion extends Component {
             optionOneText: this.state.optionOne,
             optionTwoText: this.state.optionTwo
         }))
-          .then((action) => {
-              console.log(action)
-              return this.props.history.push('/questions/' + action.question.id) 
+          .then((question) => {
+              return this.props.history.push('/questions/' + question.id) 
         })
     }
 

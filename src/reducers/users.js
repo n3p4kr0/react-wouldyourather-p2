@@ -8,8 +8,6 @@ export default function users (state = {}, action) {
                 ...action.users
             }
         case UPDATE_USER_VOTE:
-            //let user = state[action.authedUser];
-            //user.answers[action.qid] = action.answer;
             console.log(state)
             console.log(action.authedUser)
             return {
@@ -23,15 +21,15 @@ export default function users (state = {}, action) {
                 }
             }
         case ADD_QUESTION_USER:
-            console.log(action)
-            console.log(state)
-            let userData = state[action.authedUser];
-            console.log(userData)
-            userData.questions.push(action.qid)
-
             return {
                 ...state,
-                [action.authedUser]: userData
+                [action.authedUser]: {
+                    ...state[action.authedUser],
+                    questions: [
+                        ...state[action.authedUser].questions,
+                        action.qid   
+                    ]
+                }
             }
         default:
             return state

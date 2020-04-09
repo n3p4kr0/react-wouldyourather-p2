@@ -31,6 +31,24 @@ export function handleVote (info) {
 export function handleAddQuestion ({ optionOneText, optionTwoText }) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
+
+    //new Promise(function(resolve, reject) {
+      // Function is expected to return a promise
+      return saveQuestion({ optionOneText, optionTwoText, author: authedUser })
+        .then((question) => { 
+          console.log(question)
+          dispatch(addQuestion(question))
+          dispatch(addQuestionUser({ qid: question.id, authedUser: question.author }))
+
+          return question;
+        })
+    //})
+  }
+}
+
+
+
+    /*const { authedUser } = getState();
     
     return saveQuestion({ optionOneText, optionTwoText, author: authedUser })
       .then((question) => { 
@@ -38,5 +56,6 @@ export function handleAddQuestion ({ optionOneText, optionTwoText }) {
         dispatch(addQuestion(question))
         dispatch(addQuestionUser({ qid: question.id, authedUser: question.author }))
       })
+  }
 }
-}
+}*/
