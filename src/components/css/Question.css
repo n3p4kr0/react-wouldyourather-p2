@@ -19,11 +19,14 @@
 .question-author-picture {
     width: 27%;
     border-right: solid 1px lightgray;
+    display: flex;
+    align-items: center;
 }
 
 .question-author-picture img {
     min-width: 25%;
     width: 175px;
+    margin: auto;
 }
 
 .btn-see-question {

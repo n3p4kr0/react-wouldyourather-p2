@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Header, Button} from 'semantic-ui-react'
+import { Card, Header, Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
-//import LoadingBar from 'react-redux-loading'
 import "./css/LoginPage.css"
 
 class LoginPage extends Component {
@@ -31,29 +30,34 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <Card fluid className="user-login-page">
-                <Header as="h3">Please select your username to connect:</Header>
-                <select className="login-select" onChange={this.handleChange.bind(this)}>
-                    <option value=""></option>
-                    { this.props.usersList.map((userId) => <option key={userId} value={userId}>{this.props.users[userId].name}</option>) }
-                </select>
-                <Button primary className="btn-login" fluid onClick={this.handleSelectUser} disabled={this.state.selectedUser === ''}>Connect</Button>
-            </Card>
+            <div>
+            { !this.props.loading &&
+                (<Card fluid className="user-login-page">
+                    <Header as="h3">Please select your username to connect:</Header>
+                    <select className="login-select" onChange={this.handleChange.bind(this)}>
+                        <option value=""></option>
+                        { this.props.usersList.map((userId) => <option key={userId} value={userId}>{this.props.users[userId].name}</option>) }
+                    </select>
+                    <Button primary className="btn-login" fluid onClick={this.handleSelectUser} disabled={this.state.selectedUser === ''}>Connect</Button>
+                </Card>)
+            }
+            </div>
         )
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ dispatch, state, authedUser, users }) {
     let usersArray = [];
 
-    for(let user in state.users) {
+    for(let user in users) {
         usersArray.push(user)
     }
 
     return {
-        dispatch: state.dispatch,
-        authedUser: state.authedUser,
-        users: state.users,
+        loading: (usersArray.length !== Object.keys(users).length || Object.keys(users).length === 0),
+        dispatch: dispatch,
+        authedUser: authedUser,
+        users: users,
         usersList: usersArray
     }
 }

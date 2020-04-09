@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './css/AddQuestion.css'
 import { handleAddQuestion } from '../actions/shared'
-import { Card, Header, Input, Button } from 'semantic-ui-react'
+import { Card, Header, Input, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 
 class AddQuestion extends Component {
     state = {
         optionOne: '',
         optionTwo: '',
-        errors: {
-            optionOne: '',
-            optionTwo: ''
-        }
+        loading: false
     }
 
     checkEmpty = (e) => {
@@ -34,6 +31,10 @@ class AddQuestion extends Component {
 
     handleAddQuestion = (e) => {
         e.preventDefault();
+        this.setState((prevState) => ({
+            ...prevState,
+            loading: true
+        }))
         
         this.props.dispatch(handleAddQuestion( {
             optionOneText: this.state.optionOne,
@@ -46,13 +47,20 @@ class AddQuestion extends Component {
 
     render() {
         return (
-            <Card className="module-add-question">
-                <Header as="h2" className="add-would-you-rather">Would you rather... ?</Header>
-                <Input placeholder="Option 1" id="optionOne" className="input-option-one" onChange={this.checkEmpty} />
-                
-                <Input placeholder="Option 2" id="optionTwo" className="input-option-two" onChange={this.checkEmpty} />
-                <Button primary className="btn-add-question" onClick={this.handleAddQuestion}>Add question</Button>
-            </Card>
+            <div>
+                <Card className="module-add-question">
+                    <Header as="h2" className="add-would-you-rather">Would you rather... ?</Header>
+                    <Input placeholder="Option 1" id="optionOne" className="input-option-one" onChange={this.checkEmpty} />
+                    
+                    <Input placeholder="Option 2" id="optionTwo" className="input-option-two" onChange={this.checkEmpty} />
+                    <Button primary className="btn-add-question" onClick={this.handleAddQuestion} disabled={this.state.optionOne === '' || this.state.optionTwo === ''} >Add question</Button>
+                </Card>
+                { this.state.loading &&
+                <Dimmer active>
+                      <Loader content='Loading' />
+                </Dimmer>
+                }
+            </div>
         )
     }
 }
