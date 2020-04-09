@@ -4,3 +4,17 @@
     margin: auto !important;
     text-align: center !important;
 }
+
+.add-would-you-rather {
+    margin-top: 10px !important;
+}
+
+.input {
+    margin: 10px !important;
+}
+
+.btn-add-question {
+    margin: 10px auto !important;
+    width: 90% !important;
+    border-radius: 3px !important;
+}

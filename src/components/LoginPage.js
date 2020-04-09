@@ -4,6 +4,7 @@ import { Card, Select, Grid, Header, Image, Button} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 import LoadingBar from 'react-redux-loading'
+import "./css/LoginPage.css"
 
 class LoginPage extends Component {
     constructor (props) {
@@ -32,12 +33,12 @@ class LoginPage extends Component {
     render() {
         return (
             <Card fluid className="user-login-page">
-                Please select your username to connect: <br /><br />
-                <select onChange={this.handleChange.bind(this)}>
+                <Header as="h3">Please select your username to connect:</Header>
+                <select className="login-select" onChange={this.handleChange.bind(this)}>
                     <option value=""></option>
                     { this.props.usersList.map((userId) => <option key={userId} value={userId}>{this.props.users[userId].name}</option>) }
-                </select><br /><br />
-                <Button primary fluid onClick={this.handleSelectUser}>Connect</Button>
+                </select>
+                <Button primary className="btn-login" fluid onClick={this.handleSelectUser}>Connect</Button>
             </Card>
         )
     }

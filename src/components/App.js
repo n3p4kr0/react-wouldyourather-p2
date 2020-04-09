@@ -24,26 +24,33 @@ class App extends Component {
           { !this.props.loading && 
             (<BrowserRouter>
               <AppHeader />
-              <Switch>   
-                <Route exact path="/">
-                  <Dashboard />
-                </Route>
-                <Route exact path="/login">
-                  <LoginPage />
-                </Route>
-                <Route exact path="/add">
-                  <AddQuestion />
-                </Route>
-                <Route exact path="/leaderboard">
-                  <Leaderboard />
-                </Route>
-                <Route exact path="/login">
-                  <Dashboard />
-                </Route>
-                <Route exact path="/questions/:id">
-                  <QuestionDetail />
-                </Route>
-              </Switch>
+              { this.props.authedUser !== null
+                ?
+                <Switch>
+                  <Route exact path="/">
+                    <Dashboard />
+                  </Route>
+                  <Route exact path="/login">
+                    <LoginPage />
+                  </Route>
+                  <Route exact path="/add">
+                    <AddQuestion />
+                  </Route>
+                  <Route exact path="/leaderboard">
+                    <Leaderboard />
+                  </Route>
+                  <Route exact path="/questions/:id">
+                    <QuestionDetail />
+                  </Route>
+                </Switch>
+                
+                :
+                <Switch>
+                  <Route path="/">
+                    <LoginPage />
+                  </Route>
+                </Switch>
+              }
             </BrowserRouter>)
           }
         </div>

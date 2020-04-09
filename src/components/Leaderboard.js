@@ -18,9 +18,9 @@ function Leaderboard(props) {
                         <Grid columns={3} divided>
                             <Grid.Row>
                                 <Grid.Column width={3} className="column-avatar" textAlign='center'>
-                                    { i+1 === 1 && (<p>Premier</p>)} 
-                                    { i+1 === 2 && (<p>Deuxième</p>)} 
-                                    { i+1 === 3 && (<p>Troisième</p>)}
+                                    { i+1 === 1 && (<p>First</p>)} 
+                                    { i+1 === 2 && (<p>Second</p>)} 
+                                    { i+1 === 3 && (<p>Third</p>)}
                                     <Image src={users[qid].avatarURL} alt={"Avatar of " + users[qid].name} className="leaderboard-user-avatar" />
                                 </Grid.Column>
                                 <Grid.Column width={10}>
