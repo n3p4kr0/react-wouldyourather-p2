@@ -31,7 +31,9 @@ class QuestionDetail extends Component {
     }
 
     render() {
-        const { question } = this.props
+        const { question, authedUser } = this.props
+        const classVotedOptionOne = question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? styles.voted : '';
+        const classVotedOptionTwo = question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? styles.voted : '';
 
         return (
         <div>
@@ -44,12 +46,12 @@ class QuestionDetail extends Component {
                         <Grid columns={2} stackable textAlign='center' className={styles.questionGrid}>
                             <Divider vertical>Or</Divider>
                             <Grid.Row verticalAlign='middle' className={styles.options}>
-                                <Grid.Column id="optionOne" className={styles.option} onClick={this.vote} >
+                                <Grid.Column id="optionOne" className={[styles.option, classVotedOptionOne].join(' ')} onClick={this.vote} >
                                     <div className={styles.optionContent}>{question.optionOne.text}</div><br />
                                     {question.optionOne.votes.length} ({ (question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100).toFixed(2)}%)
                                 </Grid.Column>
 
-                                <Grid.Column id="optionTwo" className={styles.option} onClick={this.vote}>
+                                <Grid.Column id="optionTwo" className={[styles.option, classVotedOptionTwo].join(' ')} onClick={this.vote} >
                                     <div className={styles.optionContent}>{question.optionTwo.text}</div><br />
                                     {question.optionTwo.votes.length} ({ (question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100).toFixed(2)}%)
                                 </Grid.Column>
@@ -70,13 +72,11 @@ class QuestionDetail extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, params) {
-    const question = questions[params.match.params.id]
-
     return {
         authedUser: users[authedUser],
         question: {
-            ...question,
-            author: users[question.author]
+            ...questions[params.match.params.id],
+            author: users[questions[params.match.params.id].author]
         }
     };
 }
