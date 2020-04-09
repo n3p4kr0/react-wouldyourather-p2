@@ -40,7 +40,7 @@ class AddQuestion extends Component {
             optionTwoText: this.state.optionTwo
         }))
           .then((question) => {
-              return this.props.history.push('/questions/' + question.id) 
+              return this.props.history.push('/') 
         })
     }
 

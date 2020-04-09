@@ -11,3 +11,8 @@
 .btn-login {
     margin: 10px 0 !important;
 }
+
+.app-header-avatar {
+    width: 25px;
+    margin-right: 5px;
+}

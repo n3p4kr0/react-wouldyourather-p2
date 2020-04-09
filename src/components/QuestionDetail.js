@@ -32,11 +32,11 @@ class QuestionDetail extends Component {
                         <Divider vertical>Or</Divider>
                         <Grid.Row verticalAlign='middle' className="options">
                             <Grid.Column id="optionOne" className={ "option" + (question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote} >
-                                {question.optionOne.text}<br />{question.optionOne.votes.length}
+                                {question.optionOne.text}<br />{question.optionOne.votes.length} ({ question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100}%)
                             </Grid.Column>
 
                             <Grid.Column id="optionTwo" className={ "option" + (question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? " voted" : "")} onClick={this.vote}>
-                                {question.optionTwo.text}<br />{question.optionTwo.votes.length}
+                                {question.optionTwo.text}<br />{question.optionTwo.votes.length} ({ question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100}%)
                             </Grid.Column>
                         </Grid.Row>
                     </Grid> 

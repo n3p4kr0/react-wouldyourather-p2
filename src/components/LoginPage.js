@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Select, Grid, Header, Image, Button} from 'semantic-ui-react'
+import { Card, Header, Button} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
-import LoadingBar from 'react-redux-loading'
+//import LoadingBar from 'react-redux-loading'
 import "./css/LoginPage.css"
 
 class LoginPage extends Component {
     constructor (props) {
         super(props)
+
+        this.state= { selectedUser: '' }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSelectUser = this.handleSelectUser.bind(this)
@@ -20,9 +22,6 @@ class LoginPage extends Component {
     }
 
     handleSelectUser = (e) => {
-        if(this.state.selectedUser === '') {
-            // TODO : Show Error Message through this.state.errors
-        }
         this.props.dispatch(setAuthedUser( {
             id: this.state.selectedUser
         }))        
@@ -38,7 +37,7 @@ class LoginPage extends Component {
                     <option value=""></option>
                     { this.props.usersList.map((userId) => <option key={userId} value={userId}>{this.props.users[userId].name}</option>) }
                 </select>
-                <Button primary className="btn-login" fluid onClick={this.handleSelectUser}>Connect</Button>
+                <Button primary className="btn-login" fluid onClick={this.handleSelectUser} disabled={this.state.selectedUser === ''}>Connect</Button>
             </Card>
         )
     }

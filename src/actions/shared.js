@@ -1,10 +1,7 @@
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { receiveUsers, updateUserVote, addQuestionUser } from '../actions/users'
 import { receiveQuestions, updateQuestionVote, addQuestion } from '../actions/questions'
-import { setAuthedUser } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
-
-const AUTHED_ID = 'tylermcginnis'
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -32,17 +29,11 @@ export function handleAddQuestion ({ optionOneText, optionTwoText }) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
-    //new Promise(function(resolve, reject) {
-      // Function is expected to return a promise
-      return saveQuestion({ optionOneText, optionTwoText, author: authedUser })
-        .then((question) => { 
-          console.log(question)
-          dispatch(addQuestion(question))
-          dispatch(addQuestionUser({ qid: question.id, authedUser: question.author }))
-
-          return question;
-        })
-    //})
+    return saveQuestion({ optionOneText, optionTwoText, author: authedUser })
+    .then((question) => { 
+      dispatch(addQuestion(question))
+      dispatch(addQuestionUser({ qid: question.id, authedUser: question.author }))
+    })
   }
 }
 
@@ -50,12 +41,5 @@ export function handleAddQuestion ({ optionOneText, optionTwoText }) {
 
     /*const { authedUser } = getState();
     
-    return saveQuestion({ optionOneText, optionTwoText, author: authedUser })
-      .then((question) => { 
-        console.log(question)
-        dispatch(addQuestion(question))
-        dispatch(addQuestionUser({ qid: question.id, authedUser: question.author }))
-      })
-  }
-}
+    
 }*/

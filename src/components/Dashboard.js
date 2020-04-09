@@ -36,12 +36,6 @@ class Dashboard extends Component {
             </Menu>
             <Segment attached="bottom">
                 <Card.Group>
-                    { (authedUser === null && activeItem === 'answered-questions' ) 
-                        && (<p>Please connect to see your answered questions</p>)
-                    }
-                    { (authedUser === null && activeItem === 'unanswered-questions' ) 
-                        && ( Object.keys(questions).map( (key) => <Question id={key} key={key} />) )   
-                    }
                     { (authedUser !== null && activeItem === 'answered-questions' ) 
                         && ( Object.keys(questions).map( (key) => users[authedUser].answers.hasOwnProperty(key) && <Question id={key} key={key} />) )   
                     }

@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Segment, Grid, Header, Image} from 'semantic-ui-react'
-import { showLoading, hideLoading, LoadingBar } from 'react-redux-loading-bar'
+//import { showLoading, hideLoading, LoadingBar } from 'react-redux-loading-bar'
 import './css/Leaderboard.css'
 
 function Leaderboard(props) {
-    const {authedUser, users, sortedLeaderboard} = props
+    const { users, sortedLeaderboard} = props
 
     return (
         <div className="leaderboard">
-            <LoadingBar />
             <Segment attached="bottom">
                 <p>{users.length}</p>
                 <Card.Group>
@@ -45,21 +44,15 @@ function Leaderboard(props) {
     )   
 }
 
-function mapStateToProps({ authedUser, users, dispatch }) {
+function mapStateToProps({ users, dispatch }) {
 
-    Object.keys(users).map( (key) => {
-        console.group("USER : " + key)
-        console.log(key)
-        console.log(users[key])
-        console.log(users[key].answers)
-        console.log(users[key].questions)
-        console.groupEnd();
-
+    Object.keys(users).map( function(key) {
         const sum = Object.keys(users[key].answers).length + users[key].questions.length
         users[key] = {
             ...users[key],
             score: sum
         }
+        return users[key]
     })
 
     let sortedLeaderboard = Object.keys(users).sort(function(a,b){return users[b].score - users[a].score})
@@ -67,7 +60,6 @@ function mapStateToProps({ authedUser, users, dispatch }) {
     return {
         dispatch,
         users,
-        authedUser,
         sortedLeaderboard
     }
 }

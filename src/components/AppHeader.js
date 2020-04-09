@@ -34,7 +34,12 @@ class AppHeader extends Component {
                     {this.props.authedUser !== null 
                     ? 
                     <Menu.Menu position='right'>
-                        { this.props.userName !== null && <div className="user-name">Hello, { this.props.userName } !</div> }
+                        { this.props.userName !== null && 
+                            <div className="user-name">
+                                <img src={this.props.avatarURL} alt={this.props.userName + "'s avatar miniature"} className="app-header-avatar"/>
+                                Hello, { this.props.userName } !
+                            </div> 
+                        }
                         <Menu.Item
                         name='logout'
                         onClick={this.logout}>
@@ -57,10 +62,12 @@ class AppHeader extends Component {
 
 function mapStateToProps({ authedUser, users }) {
     let userName = (authedUser !== null) ? users[authedUser].name : null
+    let avatarURL = (authedUser !== null) ? users[authedUser].avatarURL : null
     
     return {
         authedUser,
-        userName
+        userName,
+        avatarURL
     };
 }
 
