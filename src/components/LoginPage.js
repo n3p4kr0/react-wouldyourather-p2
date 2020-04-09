@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Header, Button } from 'semantic-ui-react'
+import { Card, Header, Button, Select } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 import styles from "./css/loginPage.module.css"
@@ -8,19 +8,16 @@ import styles from "./css/loginPage.module.css"
 class LoginPage extends Component {
     constructor (props) {
         super(props)
-
         this.state= { selectedUser: '' }
 
+        // Required for the methods to refer to the right context when using "this"
         this.handleChange = this.handleChange.bind(this)
-        this.handleSelectUser = this.handleSelectUser.bind(this)
+        this.handleClickConnect = this.handleClickConnect.bind(this)
     }
 
-    handleChange(e) {
-        const value = e.target.value
-        this.setState( (prevState) => ({ selectedUser: value }))
-    }
+    handleChange(e, {value}) { this.setState( (prevState) => ({ selectedUser: value })) }
 
-    handleSelectUser = (e) => {
+    handleClickConnect = (e) => {
         this.props.dispatch(setAuthedUser( {
             id: this.state.selectedUser
         }))        
@@ -34,11 +31,8 @@ class LoginPage extends Component {
             { !this.props.loading &&
                 (<Card fluid className={styles.userLoginPage}>
                     <Header as="h3">Please select your username to connect:</Header>
-                    <select className={styles.loginSelect} onChange={this.handleChange.bind(this)}>
-                        <option value=""></option>
-                        { this.props.usersList.map((userId) => <option key={userId} value={userId}>{this.props.users[userId].name}</option>) }
-                    </select>
-                    <Button primary className={styles.btnLogin} fluid onClick={this.handleSelectUser} disabled={this.state.selectedUser === ''}>Connect</Button>
+                    <Select placeholder="Select your profile" options={this.props.users} value={this.state.selectedUser} onChange={this.handleChange} />
+                    <Button primary className={styles.btnLogin} fluid onClick={this.handleClickConnect} disabled={this.state.selectedUser === ''}>Connect</Button>
                 </Card>)
             }
             </div>
@@ -46,19 +40,21 @@ class LoginPage extends Component {
     }
 }
 
-function mapStateToProps({ dispatch, state, authedUser, users }) {
-    let usersArray = [];
-
-    for(let user in users) {
-        usersArray.push(user)
-    }
+function mapStateToProps({ dispatch, authedUser, users }) {
+    // Transforms the users object into an array with specific values 
+    // (for easier integration with Semantic UI library)
+    let u = Object.values(users).map((user) => {
+        user.key = user.id
+        user.value = user.id
+        user.text = user.name
+        return user
+    });
 
     return {
-        loading: (usersArray.length !== Object.keys(users).length || Object.keys(users).length === 0),
-        dispatch: dispatch,
-        authedUser: authedUser,
-        users: users,
-        usersList: usersArray,
+        loading: (Object.keys(users).length === 0),
+        dispatch,
+        authedUser,
+        users: u
     }
 }
 

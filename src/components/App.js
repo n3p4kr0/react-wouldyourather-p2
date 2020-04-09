@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+//import styles from './css/app.module.css';
 import { handleInitialData } from '../actions/shared'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'

@@ -18,7 +18,7 @@ class AppHeader extends Component {
         return (
             <div className={styles.appHeader}>
                 <div className={styles.headerTitleBar}>
-                    <Header as="h1" className={styles.headerTitle}>Would you rather?</Header>
+                    <Link to="/"><Header as="h1" className={styles.headerTitle}>Would you rather?</Header></Link>
                 </div>
                 <Menu fluid className={styles.headerMenu}>
                     <Menu.Item
@@ -63,6 +63,7 @@ class AppHeader extends Component {
 
 
 function mapStateToProps({ authedUser, users }) {
+    // Don't try to set the userName or the avatarURL if the user is not logged in (would result in an Exception thrown)
     let userName = (authedUser !== null) ? users[authedUser].name : null
     let avatarURL = (authedUser !== null) ? users[authedUser].avatarURL : null
     

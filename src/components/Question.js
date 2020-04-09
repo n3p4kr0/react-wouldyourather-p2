@@ -30,13 +30,11 @@ function Question (props) {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
-    const question = questions[id]
-
     return {
         authedUser,
         question: {
-            ...question,
-            author: users[question.author]
+            ...questions[id],
+            author: users[questions[id].author]
         }
     };
 }

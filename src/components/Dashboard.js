@@ -45,6 +45,8 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
+    // Transforms the questions received from store, and sorts it in descending order 
+    // (the most recent question first, based on question's timestamp)
     const q = Object.values(questions).sort((a, b) => { return b.timestamp - a.timestamp})
 
     return {

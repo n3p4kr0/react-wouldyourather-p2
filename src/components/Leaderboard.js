@@ -42,6 +42,8 @@ function Leaderboard(props) {
 }
 
 function mapStateToProps({ users, dispatch }) {
+    // Transforms the users received from store : convert it to an array, 
+    // and sets the Score (= created questions + answered questions) for each User
     let u = Object.values(users);
     u.map((user) => { 
         user.score = Object.keys(user.answers).length + user.questions.length

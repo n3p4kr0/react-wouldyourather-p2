@@ -17,7 +17,6 @@ class QuestionDetail extends Component {
             this.setState({
                 loading: true
             })
-
             dispatch(handleVote({
                 qid: question.id,
                 answer: event.target.id,
@@ -32,6 +31,10 @@ class QuestionDetail extends Component {
 
     render() {
         const { question, authedUser } = this.props
+        /* 
+         * Those two const are required to add multiples styles to "option" classes (i.e. the options for the user to vote for)
+         * If one of the option is the one the user voted for, it will apply the .voted class to the User's chosen option.
+         */
         const classVotedOptionOne = question.optionOne.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? styles.voted : '';
         const classVotedOptionTwo = question.optionTwo.votes.filter((voter) => { return voter === authedUser.id }).length === 1 ? styles.voted : '';
 
@@ -61,7 +64,9 @@ class QuestionDetail extends Component {
                 </Card>
             </Segment>
             
-        { this.state.loading &&
+        { // The loading spinner only shows when this.state.loading === true 
+          //(when dispatch is called to submit the user's vote to the API)
+        this.state.loading &&
             <Dimmer active>
                   <Loader content='Loading' />
             </Dimmer>
