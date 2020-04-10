@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Header, Button, Select } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from '../store/actions/authedUser'
 import styles from "./css/loginPage.module.css"
 
 class LoginPage extends Component {

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Menu, Header } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { logout } from '../actions/authedUser'
+import { logout } from '../store/actions/authedUser'
 import styles from './css/appHeader.module.css'
 
 class AppHeader extends Component {

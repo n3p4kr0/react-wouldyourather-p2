@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddQuestion } from '../actions/shared'
+import { handleAddQuestion } from '../store/actions/shared'
 import { Card, Header, Input, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 import styles from './css/addQuestion.module.css'

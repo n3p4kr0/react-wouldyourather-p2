@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styles from './css/questionDetail.module.css'
-import { handleVote } from '../actions/shared'
+import { handleVote } from '../store/actions/shared'
 import { Card, Grid, Divider, Header, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import { Redirect } from "react-router-dom";
 

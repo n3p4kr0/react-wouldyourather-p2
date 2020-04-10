@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { receiveUsers, updateUserVote, addQuestionUser } from '../actions/users'
-import { receiveQuestions, updateQuestionVote, addQuestion } from '../actions/questions'
+import { getInitialData, saveQuestionAnswer, saveQuestion } from '../../utils/api'
+import { receiveUsers, updateUserVote, addQuestionUser } from './users'
+import { receiveQuestions, updateQuestionVote, addQuestion } from './questions'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 /*

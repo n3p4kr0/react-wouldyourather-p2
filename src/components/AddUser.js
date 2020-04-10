@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddUser } from '../actions/users'
+import { handleAddUser } from '../store/actions/users'
 import { Card, Header, Input, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import validUrl from "valid-url"

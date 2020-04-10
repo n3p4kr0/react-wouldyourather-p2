@@ -1,4 +1,4 @@
-import { saveUser } from '../utils/api'
+import { saveUser } from '../../utils/api'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const UPDATE_USER_VOTE = 'UPDATE_USER_VOTE';
