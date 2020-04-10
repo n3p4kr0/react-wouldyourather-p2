@@ -26,7 +26,7 @@ class LoginPage extends Component {
         }
         return this.props.history.push('/')
     }
-
+    
     render() {
         return (
             <div>
