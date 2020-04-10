@@ -20,8 +20,10 @@ class LoginPage extends Component {
     handleClickConnect = (e) => {
         this.props.dispatch(setAuthedUser( {
             id: this.state.selectedUser
-        }))        
-
+        }))
+        if(this.props.location.pathname.startsWith('/questions/')) {
+            return this.props.history.push(this.props.location.pathname)
+        }
         return this.props.history.push('/')
     }
 

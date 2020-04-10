@@ -31,22 +31,10 @@ There is a form that allows the User to add a new question.
 
 A leaderboard is available, that shows an ordered list of all users number of answered and created questions: for each, they earn one point, and the ranking is based on that total score.
 
-## Build status
-(To come)
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
-
-## Screenshots
-To come
-
 ## Tech/framework used
 Ex. 
 <b>Built with</b>
 - [React ](https://reactjs.org/)
-
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 
 ## Contribute
 This project is not awaiting contributions, as it starts as a simple exercice in the beginning. This might change later.
