@@ -26,7 +26,6 @@ class QuestionDetail extends Component {
                 loading: true
             })
             
-            
             dispatch(handleVote({
                 qid: question.id,
                 answer: event.target.id,
