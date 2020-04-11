@@ -57,7 +57,6 @@ class AppRouter extends Component {
 }
 
 function mapStateToProps({ authedUser }) {
-    console.log(authedUser !== null)
     return {
         authedUser,
         isLoggedIn: authedUser !== null

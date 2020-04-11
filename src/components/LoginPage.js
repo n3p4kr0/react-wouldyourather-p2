@@ -8,7 +8,6 @@ import styles from "./css/loginPage.module.css"
 class LoginPage extends Component {
     constructor (props) {
         super(props)
-        console.log(props)
         this.state= { selectedUser: '', prevLocation: '' }
 
         // Required for the methods to refer to the right context when using "this"
@@ -67,8 +66,7 @@ function mapStateToProps({ dispatch, authedUser, users }) {
             text: user.name
         })
         return user
-    });
-    console.log(u)
+    })
 
     return {
         loading: (Object.keys(users).length === 0),
