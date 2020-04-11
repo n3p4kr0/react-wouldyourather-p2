@@ -54,6 +54,9 @@ function mapStateToProps({ authedUser, users, questions }) {
     // (the most recent question first, based on question's timestamp)
     const q = Object.values(questions).sort((a, b) => { return b.timestamp - a.timestamp})
 
+    console.log(q)
+    console.log(authedUser)
+
     return {
         authedUser: users[authedUser],
         questions: q
